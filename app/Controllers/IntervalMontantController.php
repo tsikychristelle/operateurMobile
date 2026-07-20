@@ -22,6 +22,15 @@ class IntervalMontantController extends BaseController
         ]);
         return redirect()->to('/interval-montant');
     }
+    public function save2($debut, $fin)
+    {
+        $model = new IntervalMontantModel();
+        $model->save([
+            'debut' => $debut,
+            'fin'   => $fin
+        ]);
+        return $model->getInsertID();
+    }
 
     public function delete($id)
     {
