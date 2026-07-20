@@ -272,3 +272,91 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
 14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 15 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-07-20 09:06:56 --> Error connecting to the database: Exception: Unable to open database: unable to open database file in /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/SQLite3/Connection.php(111): SQLite3->__construct()
+#1 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#2 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#4 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#5 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#6 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#7 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Controllers/fraisTypeOperationController.php(18): CodeIgniter\BaseModel->findAll()
+#8 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(951): App\Controllers\fraisTypeOperationController->index()
+#9 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#10 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#11 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: SQLite3 error: Unable to open database: unable to open database file in /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/SQLite3/Connection.php:118
+Stack trace:
+#0 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+#6 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Controllers/fraisTypeOperationController.php(18): CodeIgniter\BaseModel->findAll()
+#7 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(951): App\Controllers\fraisTypeOperationController->index()
+#8 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#9 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#13 {main}
+CRITICAL - 2026-07-20 09:06:56 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: SQLite3 error: Unable to open database: unable to open database file
+[Method: GET, Route: frais-type-operation]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Controllers/fraisTypeOperationController.php(18): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\fraisTypeOperationController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-07-20 09:09:51 --> ErrorException: Trying to access array offset on int
+[Method: GET, Route: /]
+in APPPATH/Views/fraisTypeOperation/index.php on line 41.
+ 1 APPPATH/Views/fraisTypeOperation/index.php(41): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/fraisTypeOperation/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/fraisTypeOperationController.php(20): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\fraisTypeOperationController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/public/index.php')
+CRITICAL - 2026-07-20 09:12:38 --> ErrorException: Trying to access array offset on int
+[Method: GET, Route: /]
+in APPPATH/Views/fraisTypeOperation/index.php on line 41.
+ 1 APPPATH/Views/fraisTypeOperation/index.php(41): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/fraisTypeOperation/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/fraisTypeOperationController.php(23): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\fraisTypeOperationController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/public/index.php')
+CRITICAL - 2026-07-20 09:21:42 --> ErrorException: Maximum execution time of 30 seconds exceeded
+[Method: POST, Route: frais-type-operation/save]
+in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-20 09:24:59 --> ErrorException: Maximum execution time of 30 seconds exceeded
+[Method: POST, Route: frais-type-operation/save]
+in SYSTEMPATH/Database/BaseConnection.php on line 790.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

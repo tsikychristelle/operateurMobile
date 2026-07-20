@@ -12,6 +12,12 @@ class IntervalMontantController extends BaseController
         $data['intervalles'] = $model->findAll();
         return view('interval_montant/index', $data);
     }
+    public function getAll()
+    {
+        $model = new IntervalMontantModel();
+        $data['intervalles'] = $model->findAll();
+        return $data;
+    }
 
     public function save()
     {

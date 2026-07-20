@@ -94,3 +94,7 @@ INSERT INTO operateurPrefix (idOperateur, prefix) VALUES
 (1, '055'),  -- selon les préfixes réels de votre pays
 (2, '077'),  -- MTN par exemple
 (2, '078');
+INSERT INTO "typeOperation" (type) VALUES 
+('Depot'),
+('Retrait'),
+('Transfert');
