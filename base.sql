@@ -71,13 +71,13 @@ CREATE TABLE clientNumeroSolde (
 CREATE TABLE mouvement (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    idClientNumero INTEGER NOT NULL,
     idTypeOperation INTEGER NOT NULL,
     montant REAL NOT NULL,
     idEnvoyeur INTEGER,  -- Réfère probablement à l'ID d'un autre client ou clientNumero
     idRecepteur INTEGER, -- Réfère probablement à l'ID d'un autre client ou clientNumero
-    FOREIGN KEY (idClientNumero) REFERENCES clientNumero(id),
-    FOREIGN KEY (idTypeOperation) REFERENCES typeOperation(id)
+    FOREIGN KEY (idTypeOperation) REFERENCES typeOperation(id),
+    FOREIGN KEY (idEnvoyeur) REFERENCES clientNumero(id),
+    FOREIGN KEY (idRecepteur) REFERENCES clientNumero(id)
 );
 
 
@@ -124,3 +124,23 @@ INSERT INTO clientNumeroSolde (idClientNumero, solde) VALUES
 (4, 0.0),       -- Solde pour le numéro Airtel de Andry (idClientNumero = 4, compte vide)
 (5, 85000.0),   -- Solde pour le numéro Telma de Mialy (idClientNumero = 5)
 (6, 350000.0);  -- Solde pour le numéro Airtel de Kanto (idClientNumero = 6)
+
+-- 1. Insertion des tranches de montants (intervalMontant)
+-- Les IDs (1, 2, 3, 4) vont être générés automatiquement dans cet ordre
+INSERT INTO intervalMontant (debut, fin) VALUES 
+(100.0, 5000.0),     -- Tranche 1 : de 100 à 5 000 Ar
+(5001.0, 20000.0),   -- Tranche 2 : de 5 001 à 20 000 Ar
+(20001.0, 100000.0), -- Tranche 3 : de 20 001 à 100 000 Ar
+(100001.0, 500000.0);-- Tranche 4 : de 100 001 à 500 000 Ar
+
+-- 2. Insertion des frais associés (fraisTypeOperation)
+-- On lie chaque type d'opération à un intervalle avec un montant de frais fixe
+INSERT INTO fraisTypeOperation (idTypeOperation, idIntervalMontant, frais) VALUES 
+-- Tarifs pour le Type d'opération 2 (Ex: Retrait)
+(2, 1, 150.0),   -- Tranche 1 : 150 Ar de frais
+(2, 2, 400.0),   -- Tranche 2 : 400 Ar de frais
+(2, 3, 1200.0),  -- Tranche 3 : 1 200 Ar de frais
+(2, 4, 3500.0),  -- Tranche 4 : 3 500 Ar de frais
+(3, 2, 300.0),   -- Tranche 2 : 300 Ar de frais
+(3, 3, 900.0),   -- Tranche 3 : 900 Ar de frais
+(3, 4, 2800.0);  -- Tranche 4 : 2 800 Ar de frais
