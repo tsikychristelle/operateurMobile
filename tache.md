@@ -18,23 +18,11 @@
     * fonction
         + Modele
 
-            - operateurModel (Gaelle)
-            - operateurPrefixModel (Gaelle)
-            - statusModel (Gaelle)
-            - typeOperationModel (Gaelle)
-            - intervalMontantModel (Gaelle)
-            - fraisTypeOperationModel
-            - clientModel
-            - clientNumeroModel
-            - clientNumeroOperateurModel
-            - clientNumeroSoldeModel
-            - mouvementModel   
-
-            - operateurModel
-            - operateurPrefixModel
-            - statusModel
-            - typeOperationModel
-            - intervalMontantModel
+            - operateurModel (Gaelle)(ok)
+            - operateurPrefixModel (Gaelle)(ok)
+            - statusModel (Gaelle)(ok)
+            - typeOperationModel (Gaelle)(ok)
+            - intervalMontantModel (Gaelle)(ok)
             - fraisTypeOperationModel(Christelle)(ok)
             - clientModel(Christelle)(ok)
             - clientNumeroModel(Christelle)(ok)
@@ -44,11 +32,11 @@
 
         
         + controller
-            - operateurController
-            - operateurPrefixController
-            - statusController
-            - typeOperationController
-            - intervalMontantController
+            - operateurController(Gaelle)(ok)
+            - operateurPrefixController(Gaelle)(ok)
+            - statusController(Gaelle)(ok)
+            - typeOperationController(Gaelle)(ok)
+            - intervalMontantController(Gaelle)(ok)
             - fraisTypeOperationController(Christelle)
             - clientController(Christelle)
             - clientNumeroController(Christelle)
