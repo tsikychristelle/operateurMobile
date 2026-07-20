@@ -15,6 +15,12 @@ class IntervalMontantController extends BaseController
         $data['activeNav']    = 'interval';
         return view('interval_montant/index', $data);
     }
+    public function getAll()
+    {
+        $model = new IntervalMontantModel();
+        $data['intervalles'] = $model->findAll();
+        return $data;
+    }
 
     public function save()
     {
@@ -24,6 +30,15 @@ class IntervalMontantController extends BaseController
             'fin'   => $this->request->getPost('fin')
         ]);
         return redirect()->to('/interval-montant')->with('success', 'Tranche ajoutée avec succès.');
+    }
+    public function save2($debut, $fin)
+    {
+        $model = new IntervalMontantModel();
+        $model->save([
+            'debut' => $debut,
+            'fin'   => $fin
+        ]);
+        return $model->getInsertID();
     }
 
     public function delete($id)

@@ -108,7 +108,7 @@ class Database extends Config
     //    public array $default = [
     //        'DSN'        => '',
     //        'hostname'   => 'localhost',
-    //        'username'   => 'root',
+    //        'username'   => 'root',O
     //        'password'   => 'root',
     //        'database'   => 'ci4',
     //        'schema'     => 'dbo',
