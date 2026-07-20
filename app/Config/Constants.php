@@ -25,6 +25,9 @@ defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
  */
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
 
+defined('MY_OPERATEUR_ID') || define('MY_OPERATEUR_ID', 1);
+defined('MY_OPERATEUR_LIBELLE') || define('MY_OPERATEUR_LIBELLE', 'Mon opérateur');
+
 /*
  |--------------------------------------------------------------------------
  | Timing Constants
