@@ -7,8 +7,11 @@ use App\Models\ClientModel;
 use App\Models\ClientNumeroModel;
 class clientNumeroController extends  BaseController{
     protected $clientNumeroModel;
+    protected $mouvementModel;
+
     public function __construct(){  
         $this->clientNumeroModel = new ClientNumeroModel();
+        $this->mouvementModel = new MouvementModel();
     }
     // protected $mouvementModel;
     // public function __construct(){  
@@ -45,6 +48,26 @@ class clientNumeroController extends  BaseController{
     //     ]);
     //     return redirect()->to('/clientNumeroSolde');    
     // }
+    private function getMouvementsClient()
+    {
+        $session = session();
+        $idClientNumero = $session->get('idClientNumero');
+
+        if (!$idClientNumero) {
+            return [];
+        }
+
+        return $this->mouvementModel
+            ->select('mouvement.*, typeOperation.type as typeOperation, envoyeur.numero as numeroEnvoyeur, recepteur.numero as numeroRecepteur')
+            ->join('typeOperation', 'typeOperation.id = mouvement.idTypeOperation', 'left')
+            ->join('clientNumero as envoyeur', 'envoyeur.id = mouvement.idEnvoyeur', 'left')
+            ->join('clientNumero as recepteur', 'recepteur.id = mouvement.idRecepteur', 'left')
+            ->where('mouvement.idEnvoyeur', $idClientNumero)
+            ->orWhere('mouvement.idRecepteur', $idClientNumero)
+            ->orderBy('mouvement.date', 'DESC')
+            ->findAll();
+    }
+
     public function getClientByNumero($numero){
         $client = $this->clientNumeroModel->where('numero', $numero)->first();
         return $client;
@@ -68,6 +91,7 @@ class clientNumeroController extends  BaseController{
     'pageSubtitle' => 'Bienvenue dans votre espace',
     'activeNav' => '',
     'viewMode' => 'client',
+    'mouvements' => $this->getMouvementsClient(),
 ]);
             } else {
                 // Handle failed login
@@ -84,9 +108,8 @@ class clientNumeroController extends  BaseController{
         'pageSubtitle' => 'Bienvenue dans votre espace',
         'activeNav' => '',
         'viewMode' => 'client',
+        'mouvements' => $this->getMouvementsClient(),
     ]);
 }
 
-   
-    
 }

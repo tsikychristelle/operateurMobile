@@ -65,6 +65,13 @@ class mouvementController extends  BaseController{
             ]);
         }
 
+        $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumero,
+            'idTypeOperation' => 1,
+            'montant' => $montant,
+            'idRecepteur' => $idClientNumero,
+        ]);
+
         return redirect()->to('/client-numero/solde')->with('message', 'Dépôt effectué avec succès.');
     }
 
@@ -189,6 +196,7 @@ class mouvementController extends  BaseController{
 
         // 6. ENREGISTREMENT DU MOUVEMENT
         $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumeroConnecte,
             'idTypeOperation' => $fraisRow['idTypeOperation'], 
             'montant'         => $montant,
             'idEnvoyeur'      => $idClientNumeroCible,    
@@ -208,6 +216,7 @@ class mouvementController extends  BaseController{
         $idClientNumeroConnecte = $session->get('idClientNumero');
         $numeroRecepteurSaisi = $this->request->getPost('recepteur');
         $montant = floatval($this->request->getPost('montant'));
+        $avecFrais = $this->request->getPost('avecFrais') === '1';
 
         if (!$idClientNumeroConnecte || !$numeroRecepteurSaisi || $montant <= 0) {
             return redirect()->back()->with('error', 'Données de transaction invalides.');
@@ -277,11 +286,14 @@ class mouvementController extends  BaseController{
             'solde' => $soldeConnecte['solde'] - $totalADeduire
         ]);
 
+        $montantCredite = $avecFrais ? $montant + $frais : $montant;
+
         $soldeModel->update($soldeRecepteur['id'], [
-            'solde' => $soldeRecepteur['solde'] + $montant
+            'solde' => $soldeRecepteur['solde'] + $montantCredite
         ]);
 
         $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumeroConnecte,
             'idTypeOperation' => $fraisRow['idTypeOperation'],
             'montant' => $montant,
             'idEnvoyeur' => $idClientNumeroConnecte,
