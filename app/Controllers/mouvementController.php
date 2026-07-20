@@ -65,6 +65,13 @@ class mouvementController extends  BaseController{
             ]);
         }
 
+        $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumero,
+            'idTypeOperation' => 1,
+            'montant' => $montant,
+            'idRecepteur' => $idClientNumero,
+        ]);
+
         return redirect()->to('/client-numero/solde')->with('message', 'Dépôt effectué avec succès.');
     }
 
@@ -189,6 +196,7 @@ class mouvementController extends  BaseController{
 
         // 6. ENREGISTREMENT DU MOUVEMENT
         $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumeroConnecte,
             'idTypeOperation' => $fraisRow['idTypeOperation'], 
             'montant'         => $montant,
             'idEnvoyeur'      => $idClientNumeroCible,    
@@ -282,6 +290,7 @@ class mouvementController extends  BaseController{
         ]);
 
         $this->mouvementModel->save([
+            'idClientNumero' => $idClientNumeroConnecte,
             'idTypeOperation' => $fraisRow['idTypeOperation'],
             'montant' => $montant,
             'idEnvoyeur' => $idClientNumeroConnecte,

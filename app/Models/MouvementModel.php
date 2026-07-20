@@ -5,6 +5,6 @@ class MouvementModel extends Model{
     protected $table = 'mouvement';
     protected $primaryKey = 'id';
 
-    protected $allowedFields = [ 'date','idTypeOperation', 'montant', 'idEnvoyeur', 'idRecepteur'];
+    protected $allowedFields = [ 'date','idClientNumero','idTypeOperation', 'montant', 'idEnvoyeur', 'idRecepteur'];
 
 }
