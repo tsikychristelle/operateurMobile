@@ -360,3 +360,44 @@ CRITICAL - 2026-07-20 09:24:59 --> ErrorException: Maximum execution time of 30 
 [Method: POST, Route: frais-type-operation/save]
 in SYSTEMPATH/Database/BaseConnection.php on line 790.
  1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-20 09:40:38 --> Error: Class "App\Models\MouvementModel" not found
+[Method: GET, Route: client-numero]
+in APPPATH/Controllers/clientNumeroController.php on line 9.
+ 1 SYSTEMPATH/CodeIgniter.php(921): App\Controllers\clientNumeroController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-07-20 09:40:41 --> Error: Class "App\Models\MouvementModel" not found
+[Method: GET, Route: client-numero]
+in APPPATH/Controllers/clientNumeroController.php on line 9.
+ 1 SYSTEMPATH/CodeIgniter.php(921): App\Controllers\clientNumeroController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-07-20 09:45:02 --> CompileError: Multiple access type modifiers are not allowed
+[Method: GET, Route: client-numero]
+in APPPATH/Controllers/clientNumeroController.php on line 18.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 5 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 6 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 7 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-07-20 09:49:01 --> Error: Class "App\Controllers\clientController" not found
+[Method: POST, Route: client-numero/login]
+in APPPATH/Controllers/clientNumeroController.php on line 51.
+ 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroController->login()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()

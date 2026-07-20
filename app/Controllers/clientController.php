@@ -4,7 +4,7 @@ use App\Models\ClientModel;
 use App\Models\ClientNumeroModel;
 use App\Models\ClientNumeroOperateurModel;
 use App\Models\ClientNumeroSoldeModel;
-class clientsController extends BaseController{
+class clientController extends BaseController{
     protected $clientModel;
     public function __construct(){  
         $this->clientModel = new ClientModel();
@@ -38,6 +38,10 @@ class clientsController extends BaseController{
             'solde' => $this->request->getPost('solde')
         ]);
         return redirect()->to('/mouvement');    
+    }
+    public function getClientByNom($nom){
+        $client = $this->clientModel->where('nom', $nom)->first();
+        return $client;
     }
 }
 ?>

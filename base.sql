@@ -98,3 +98,21 @@ INSERT INTO "typeOperation" (type) VALUES
 ('Depot'),
 ('Retrait'),
 ('Transfert');
+
+-- 1. Insertion des clients
+INSERT INTO client (nom) VALUES 
+('Rakoto'),
+('Rasoa'),
+('Andry'),
+('Mialy'),
+('Kanto');
+
+-- 2. Insertion des numéros associés (034 pour Telma, 033 pour Airtel)
+-- L'idClient correspond à l'ID généré automatiquement dans la table client
+INSERT INTO clientNumero (idClient, numero) VALUES 
+(1, '0341234567'), -- Numéro Telma pour Rakoto (id = 1)
+(1, '0331122233'), -- Deuxième numéro (Airtel) pour Rakoto
+(2, '0349876543'), -- Numéro Telma pour Rasoa (id = 2)
+(3, '0334455566'), -- Numéro Airtel pour Andry (id = 3)
+(4, '0345566677'), -- Numéro Telma pour Mialy (id = 4)
+(5, '0337788899'); -- Numéro Airtel pour Kanto (id = 5)

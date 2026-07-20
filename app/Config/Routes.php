@@ -21,3 +21,9 @@ $routes->get('/operateur-prefix/delete/(:num)', 'OperateurPrefixController::dele
 // Frais Type Operation Routes
 $routes->get('/frais-type-operation', 'fraisTypeOperationController::index');
 $routes->post('/frais-type-operation/save', 'fraisTypeOperationController::save');
+
+
+
+// Clients 
+$routes->get('/client-numero', 'clientNumeroController::index');
+$routes->post('/client-numero/login', 'clientNumeroController::login');

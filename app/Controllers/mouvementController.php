@@ -32,5 +32,6 @@ class mouvementController extends  BaseController{
         ]);
         return redirect()->to('/clientNumeroSolde');    
     }
+    
 
 }

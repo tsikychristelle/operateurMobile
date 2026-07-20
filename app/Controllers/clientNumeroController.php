@@ -1,0 +1,68 @@
+<?php 
+namespace App\Controllers;
+use App\Models\MouvementModel;
+use App\Controllers\clientController;
+use App\Models\ClientNumeroSoldeModel;
+use App\Models\ClientModel;
+use App\Models\ClientNumeroModel;
+class clientNumeroController extends  BaseController{
+    protected $clientNumeroModel;
+    public function __construct(){  
+        $this->clientNumeroModel = new ClientNumeroModel();
+    }
+    // protected $mouvementModel;
+    // public function __construct(){  
+    //     $this->mouvementModel = new MouvementModel();
+    // }
+  
+    public function index(){
+        // $data['mouvements'] = $this->mouvementModel->findAll();
+        return view('clientNumero/index');
+    }
+    // public function save(){
+    //     $this->mouvementModel->save([
+    //         'idClientNumero' => $this->request->getPost('idClientNumero'),
+    //         'solde' => $this->request->getPost('solde')
+    //     ]);
+    //     return redirect()->to('/clientNumeroSolde');
+    // }
+    // public function delete($id){
+    //     $this->mouvementModel->delete($id);
+    //     return redirect()->to('/clientNumeroSolde');
+    // }
+    // public function edit($id){
+    //     $data['mouvements'] = $this->mouvementModel->find($id);
+    //     return view('clientNumero/edit', $data);
+    // }
+    // public function update($id){
+    //     $this->mouvementModel->update($id, [
+    //         'idClientNumero' => $this->request->getPost('idClientNumero'),
+    //         'solde' => $this->request->getPost('solde')
+    //     ]);
+    //     return redirect()->to('/clientNumeroSolde');    
+    // }
+    public function getClientByNumero($numero){
+        $client = $this->clientNumeroModel->where('numero', $numero)->first();
+        return $client;
+    }
+    public function login(){
+        $numero = $this->request->getPost('numero');
+        $nom = $this->request->getPost('nom');
+        $clientController = new clientController();
+        $nomClient = $clientController->getClientByNom($nom);
+        if($nomClient){
+           $clientNumero = $this->getClientByNumero($numero);
+            if($clientNumero && $clientNumero['idClient'] == $nomClient['id']){
+                // Successful login
+                return "Bienvenue, " . $nomClient['nom'] . "!";
+            } else {
+                // Handle failed login
+                return redirect()->to('/login');
+            }
+        } else {
+            // Handle failed login
+            return redirect()->to('/login');
+        }
+    }
+    
+}
