@@ -38,9 +38,9 @@
             - fraisTypeOperationModel(Christelle)(ok)
             - clientModel(Christelle)(ok)
             - clientNumeroModel(Christelle)(ok)
-            - clientNumeroOperateurModel(Christelle)
-            - clientNumeroSoldeModel(Christelle)
-            - mouvementModel(Christelle)
+            - clientNumeroOperateurModel(Christelle)(ok)
+            - clientNumeroSoldeModel(Christelle)(ok)
+            - mouvementModel(Christelle)(ok)
 
         
         + controller

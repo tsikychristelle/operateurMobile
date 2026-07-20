@@ -55,9 +55,9 @@ CREATE TABLE clientNumero (
 
 CREATE TABLE clientNumeroOperateur (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    idClient INTEGER NOT NULL,
+    idClientNumero INTEGER NOT NULL,
     idOperateur INTEGER NOT NULL,
-    FOREIGN KEY (idClient) REFERENCES client(id) ON DELETE CASCADE,
+    FOREIGN KEY (idClientNumero) REFERENCES clientNumero(id) ON DELETE CASCADE,
     FOREIGN KEY (idOperateur) REFERENCES operateur(id) ON DELETE CASCADE
 );
 
