@@ -5,7 +5,8 @@
 <?php
 $pageTitle = 'Connexion client';
 $pageSubtitle = 'Accès à votre espace mobile';
-$activeNav = '';
+$activeNav = 'client-login';
+$viewMode = 'client';
 ?>
 
 <div class="card" style="max-width: 560px; margin: 0 auto;">

@@ -5,7 +5,8 @@
 <?php
 $pageTitle = 'Solde du client';
 $pageSubtitle = 'Consultation du compte';
-$activeNav = '';
+$activeNav = 'client-solde';
+$viewMode = 'client';
 ?>
 
 <div class="card" style="max-width: 640px; margin: 0 auto;">

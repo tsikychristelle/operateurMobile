@@ -5,7 +5,8 @@
 <?php
 $pageTitle = 'Accueil client';
 $pageSubtitle = 'Bienvenue dans votre espace';
-$activeNav = '';
+$activeNav = 'client-home';
+$viewMode = 'client';
 ?>
 
 <div class="card" style="max-width: 640px; margin: 0 auto;">
@@ -16,13 +17,12 @@ $activeNav = '';
         </div>
     </div>
     <div class="card-body">
-        <div class="stat-grid">
-            <div class="stat-card">
-                <div class="label">Consultation</div>
-                <div class="value green">Solde</div>
-            </div>
+        <div class="form-grid" style="align-items: stretch;">
+            <a href="/client-numero/solde" class="btn btn-primary" style="flex: 1; min-width: 180px; justify-content: center;">Voir le solde</a>
+            <a href="/mouvement/depot" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un dépôt</a>
+            <a href="/mouvement/retrait" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un retrait</a>
+            <a href="/mouvement/transfert" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un transfert</a>
         </div>
-        <a href="/client-numero/solde" class="btn btn-primary">Voir le solde</a>
     </div>
 </div>
 

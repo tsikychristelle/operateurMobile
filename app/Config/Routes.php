@@ -29,6 +29,7 @@ $routes->get('/type-operation/delete/(:num)', 'TypeOperationController::delete/$
 $routes->get('/interval-montant', 'IntervalMontantController::index');
 $routes->post('/interval-montant/save', 'IntervalMontantController::save');
 $routes->get('/interval-montant/delete/(:num)', 'IntervalMontantController::delete/$1');
+
 $routes->get('/frais-type-operation', 'fraisTypeOperationController::index');
 $routes->post('/frais-type-operation/save', 'fraisTypeOperationController::save');
 $routes->get('/frais-type-operation/delete/(:num)', 'fraisTypeOperationController::delete/$1');
