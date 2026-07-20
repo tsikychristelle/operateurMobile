@@ -3,16 +3,25 @@
 namespace App\Controllers;
 
 use App\Models\OperateurPrefixModel;
+use App\Models\OperateurModel;
 
 class OperateurPrefixController extends BaseController
 {
     public function index()
     {
-        $model = new OperateurPrefixModel();
-        $data['prefixes'] = $model->findAll();
-        return view('operateur_prefix/index', $data);
-    }
+        $prefixModel = new OperateurPrefixModel();
+        $operateurModel = new OperateurModel();
 
+        $data['prefixes'] = $prefixModel
+            ->select('operateurPrefix.*, operateur.libelle')
+            ->join('operateur', 'operateur.id = operateurPrefix.idOperateur')
+            ->findAll();
+
+        $data['operateurs'] = $operateurModel->findAll();
+
+        return view('operateurPRefix/index', $data);
+    }
+ 
     public function save()
     {
         $model = new OperateurPrefixModel();

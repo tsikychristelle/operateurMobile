@@ -79,3 +79,18 @@ CREATE TABLE mouvement (
     FOREIGN KEY (idClientNumero) REFERENCES clientNumero(id),
     FOREIGN KEY (idTypeOperation) REFERENCES typeOperation(id)
 );
+
+
+INSERT INTO operateur (libelle) VALUES 
+('Orange'),
+('MTN'),
+('Moov'),
+('Autres');
+
+-- Exemple pour Orange (supposons que son id = 1)
+INSERT INTO operateurPrefix (idOperateur, prefix) VALUES 
+(1, '033'),
+(1, '037'),
+(1, '055'),  -- selon les préfixes réels de votre pays
+(2, '077'),  -- MTN par exemple
+(2, '078');
