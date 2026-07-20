@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="/client-numero/solde">Voir le solde </a>
-</body>
-</html>
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
+
+<?php
+$pageTitle = 'Accueil client';
+$pageSubtitle = 'Bienvenue dans votre espace';
+$activeNav = '';
+?>
+
+<div class="card" style="max-width: 640px; margin: 0 auto;">
+    <div class="card-header">
+        <div>
+            <h2>Bienvenue</h2>
+            <p>Choisissez l’action à réaliser depuis votre espace client.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="label">Consultation</div>
+                <div class="value green">Solde</div>
+            </div>
+        </div>
+        <a href="/client-numero/solde" class="btn btn-primary">Voir le solde</a>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

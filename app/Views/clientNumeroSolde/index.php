@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Solde du client</h1>
-    <p>Solde: <?= $clientNumeroSoldes['solde'] ?? 0 ?> Ar</p>
-    
-</body>
-</html>
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
+
+<?php
+$pageTitle = 'Solde du client';
+$pageSubtitle = 'Consultation du compte';
+$activeNav = '';
+?>
+
+<div class="card" style="max-width: 640px; margin: 0 auto;">
+    <div class="card-header">
+        <div>
+            <h2>Solde actuel</h2>
+            <p>Voici le montant disponible sur votre compte.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="stat-card">
+            <div class="label">Montant disponible</div>
+            <div class="value orange"><?= esc($clientNumeroSoldes['solde'] ?? 0) ?> Ar</div>
+        </div>
+        <a href="/client-numero/accueil" class="btn btn-ghost">Retour</a>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

@@ -1,4 +1,4 @@
--- Active: 1784530400378@@127.0.0.1@3306
+-- Active: 1784538205105@@127.0.0.1@3306
 -- Activer le support des clés étrangères (obligatoire sous SQLite)
 PRAGMA foreign_keys = ON;
 

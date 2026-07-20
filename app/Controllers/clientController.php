@@ -22,4 +22,9 @@ class ClientController extends BaseController
         // branché ici une fois clientNumeroController / mouvementController prêts.
         return redirect()->to('/client')->with('error', "Espace client en cours de construction. Numéro reçu : {$numero}.");
     }
+    public function getClientByNom($nom){
+        $clientModel = new \App\Models\ClientModel();
+        $client = $clientModel->where('nom', $nom)->first();
+        return $client;
+    }
 }
