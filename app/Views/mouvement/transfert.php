@@ -25,7 +25,7 @@ $viewMode = 'client';
         </div>
     </div>
     <div class="card-body">
-        <form action="/mouvement/transfert" method="post" class="form-grid">
+        <form action="/mouvement/transfert" method="post" class="form-grid" id="transferForm">
             <div class="field">
                 <label for="recepteur">Numéro du récepteur</label>
                 <input type="text" name="recepteur" id="recepteur" required>
@@ -34,8 +34,18 @@ $viewMode = 'client';
                 <label for="montant">Montant</label>
                 <input type="number" name="montant" id="montant" min="1" step="0.01" required>
             </div>
+            <input type="hidden" name="avecFrais" id="avecFrais" value="0">
             <button type="submit" class="btn btn-primary">Transférer</button>
         </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('transferForm').addEventListener('submit', function () {
+        const withFee = window.confirm('Voulez-vous envoyer avec les frais ?');
+        document.getElementById('avecFrais').value = withFee ? '1' : '0';
+    });
+</script>
     </div>
 </div>
 

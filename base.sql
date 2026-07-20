@@ -144,3 +144,23 @@ INSERT INTO fraisTypeOperation (idTypeOperation, idIntervalMontant, frais) VALUE
 (3, 2, 300.0),   -- Tranche 2 : 300 Ar de frais
 (3, 3, 900.0),   -- Tranche 3 : 900 Ar de frais
 (3, 4, 2800.0);  -- Tranche 4 : 2 800 Ar de frais
+
+INSERT INTO clientNumeroOperateur (idClientNumero, idOperateur) VALUES 
+(1, 4), -- 0341234567 -> Autres (opérateur non défini dans les préfixes)
+(2, 1), -- 0331122233 -> Orange (préfixe 033)
+(3, 4), -- 0349876543 -> Autres
+(4, 1), -- 0334455566 -> Orange (préfixe 033)
+(5, 4), -- 0345566677 -> Autres
+(6, 1); -- 0337788899 -> Orange (préfixe 033)
+CREATE TRIGGER after_client_numero_insert
+AFTER INSERT ON clientNumero
+BEGIN
+    INSERT INTO clientNumeroOperateur (idClientNumero, idOperateur)
+    VALUES (
+        NEW.id,
+        COALESCE(
+            (SELECT idOperateur FROM operateurPrefix WHERE prefix = SUBSTR(NEW.numero, 1, 3) LIMIT 1),
+            4 -- ID de l'opérateur 'Autres' par défaut
+        )
+    );
+END;
