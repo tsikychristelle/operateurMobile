@@ -17,3 +17,15 @@ $routes->get('/operateur/delete/(:num)', 'OperateurController::delete/$1');
 $routes->get('/operateur-prefix', 'OperateurPrefixController::index');
 $routes->post('/operateur-prefix/save', 'OperateurPrefixController::save');
 $routes->get('/operateur-prefix/delete/(:num)', 'OperateurPrefixController::delete/$1');
+
+$routes->get('/type-operation', 'TypeOperationController::index');
+$routes->post('/type-operation/save', 'TypeOperationController::save');
+$routes->get('/type-operation/delete/(:num)', 'TypeOperationController::delete/$1');
+
+$routes->get('/interval-montant', 'IntervalMontantController::index');
+$routes->post('/interval-montant/save', 'IntervalMontantController::save');
+$routes->get('/interval-montant/delete/(:num)', 'IntervalMontantController::delete/$1');
+
+$routes->get('/status', 'StatusController::index');
+$routes->post('/status/save', 'StatusController::save');
+$routes->get('/status/delete/(:num)', 'StatusController::delete/$1');

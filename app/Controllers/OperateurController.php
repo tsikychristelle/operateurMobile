@@ -9,7 +9,10 @@ class OperateurController extends BaseController
     public function index()
     {
         $model = new OperateurModel();
-        $data['operateurs'] = $model->findAll();
+        $data['operateurs']   = $model->findAll();
+        $data['pageTitle']    = 'Opérateurs';
+        $data['pageSubtitle'] = 'Côté opérateur · Configuration';
+        $data['activeNav']    = 'operateur';
         return view('operateur/index', $data);
     }
 
@@ -20,13 +23,13 @@ class OperateurController extends BaseController
             'libelle' => $this->request->getPost('libelle')
         ]);
 
-        return redirect()->to('/operateur');
+        return redirect()->to('/operateur')->with('success', 'Opérateur ajouté avec succès.');
     }
 
     public function delete($id)
     {
         $model = new OperateurModel();
         $model->delete($id);
-        return redirect()->to('/operateur');
+        return redirect()->to('/operateur')->with('success', 'Opérateur supprimé.');
     }
 }
