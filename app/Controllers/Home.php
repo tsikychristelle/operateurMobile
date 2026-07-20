@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        return redirect()->to('/operateur');
+        return view('home/index');
     }
 }

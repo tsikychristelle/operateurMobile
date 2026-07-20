@@ -1,47 +1,25 @@
-<?php 
+<?php
+
 namespace App\Controllers;
-use App\Models\ClientModel;
-use App\Models\ClientNumeroModel;
-use App\Models\ClientNumeroOperateurModel;
-use App\Models\ClientNumeroSoldeModel;
-class clientController extends BaseController{
-    protected $clientModel;
-    public function __construct(){  
-        $this->clientModel = new ClientModel();
+
+class ClientController extends BaseController
+{
+    public function index()
+    {
+        return view('client/login');
     }
-    public function index(){
-        $data['clients'] = $this->clientModel->findAll();
-        return view('client/index', $data);
-    }
-       
-    public function save(){
-       
-        $this->clientModel->save([
-            'idClientNumero' => $this->request->getPost('idClientNumero'),
-            'solde' => $this->request->getPost('solde')
-        ]);
-        return redirect()->to('/mouvement');
-    }
-    public function delete($id){
-        $this->clientModel->delete($id);
-        return redirect()->to('/mouvement');   
-    }
-    public function edit($id){
-        $clientNumeroSoldeModel = new ClientNumeroSoldeModel();
-        $data['clientNumeroSolde'] = $clientNumeroSoldeModel->find($id);
-        return view('mouvement/edit', $data);
-    }
-    public function update($id){
-        $clientNumeroSoldeModel = new ClientNumeroSoldeModel();
-        $clientNumeroSoldeModel->update($id, [
-            'idClientNumero' => $this->request->getPost('idClientNumero'),
-            'solde' => $this->request->getPost('solde')
-        ]);
-        return redirect()->to('/mouvement');    
-    }
-    public function getClientByNom($nom){
-        $client = $this->clientModel->where('nom', $nom)->first();
-        return $client;
+
+    public function login()
+    {
+        $numero = trim((string) $this->request->getPost('numero'));
+
+        if ($numero === '') {
+            return redirect()->to('/client')->with('error', 'Veuillez saisir un numéro de téléphone.');
+        }
+
+        // NOTE: l'espace client (solde, dépôt, retrait, transfert, historique)
+        // n'est pas encore développé. Le login automatique par numéro sera
+        // branché ici une fois clientNumeroController / mouvementController prêts.
+        return redirect()->to('/client')->with('error', "Espace client en cours de construction. Numéro reçu : {$numero}.");
     }
 }
-?>

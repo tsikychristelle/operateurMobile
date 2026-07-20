@@ -94,6 +94,7 @@
                 <?php endif; ?>
             </div>
             <div class="right">
+                <a href="/" class="btn btn-ghost" style="font-size:12.5px;">Changer d'espace</a>
                 <span class="pill"><span class="dot"></span> Base connectée</span>
             </div>
         </div>
