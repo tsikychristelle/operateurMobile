@@ -17,11 +17,11 @@
         
     * fonction
         + Modele
-            - operateurModel
-            - operateurPrefixModel
-            - statusModel
-            - typeOperationModel
-            - intervalMontantModel
+            - operateurModel (Gaelle)
+            - operateurPrefixModel (Gaelle)
+            - statusModel (Gaelle)
+            - typeOperationModel (Gaelle)
+            - intervalMontantModel (Gaelle)
             - fraisTypeOperationModel
             - clientModel
             - clientNumeroModel
