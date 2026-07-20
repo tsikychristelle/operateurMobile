@@ -146,6 +146,99 @@ class mouvementController extends  BaseController{
         return redirect()->to('/client-numero/solde')->with('success', "Retrait effectué avec succès !");
     }
 
+    public function transfert(){
+        return view('mouvement/transfert');
+    }
+
+    public function transfert1()
+    {
+        $session = session();
+        $idClientNumeroConnecte = $session->get('idClientNumero');
+        $numeroRecepteurSaisi = $this->request->getPost('recepteur');
+        $montant = floatval($this->request->getPost('montant'));
+
+        if (!$idClientNumeroConnecte || !$numeroRecepteurSaisi || $montant <= 0) {
+            return redirect()->back()->with('error', 'Données de transaction invalides.');
+        }
+
+        $clientNumeroModel = new \App\Models\ClientNumeroModel();
+        $compteRecepteur = $clientNumeroModel->where('numero', $numeroRecepteurSaisi)->first();
+
+        if (!$compteRecepteur) {
+            return redirect()->back()->with('error', "Le numéro destinataire '$numeroRecepteurSaisi' n'existe pas.");
+        }
+
+        $idClientNumeroRecepteur = $compteRecepteur['id'];
+
+        $fraisTypeOperationModel = new \App\Models\FraisTypeOperationModel();
+        $fraisRow = $fraisTypeOperationModel
+            ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
+            ->where('fraisTypeOperation.idTypeOperation', 3)
+            ->where('intervalMontant.debut <=', $montant)
+            ->where('intervalMontant.fin >=', $montant)
+            ->first();
+
+        if (!$fraisRow) {
+            $fraisRow = $fraisTypeOperationModel
+                ->select('fraisTypeOperation.*')
+                ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
+                ->where('fraisTypeOperation.idTypeOperation', 3)
+                ->where('intervalMontant.fin <=', $montant)
+                ->orderBy('intervalMontant.fin', 'DESC')
+                ->first();
+        }
+
+        if (!$fraisRow) {
+            $fraisRow = $fraisTypeOperationModel
+                ->select('fraisTypeOperation.*')
+                ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
+                ->where('fraisTypeOperation.idTypeOperation', 3)
+                ->orderBy('intervalMontant.debut', 'ASC')
+                ->first();
+        }
+
+        if (!$fraisRow) {
+            return redirect()->back()->with('error', 'Aucun frais de transfert n’est configuré.');
+        }
+
+        $frais = floatval($fraisRow['frais']);
+        $totalADeduire = $montant + $frais;
+
+        $soldeModel = new \App\Models\ClientNumeroSoldeModel();
+
+        $soldeConnecte = $soldeModel->where('idClientNumero', $idClientNumeroConnecte)->first();
+        $soldeRecepteur = $soldeModel->where('idClientNumero', $idClientNumeroRecepteur)->first();
+
+        if (!$soldeConnecte) {
+            return redirect()->back()->with('error', 'Le compte du client connecté ne possède pas de solde actif.');
+        }
+
+        if (!$soldeRecepteur) {
+            return redirect()->back()->with('error', 'Le compte du récepteur ne possède pas de solde actif.');
+        }
+
+        if ($soldeConnecte['solde'] < $totalADeduire) {
+            return redirect()->back()->with('error', "Solde insuffisant sur votre compte. Il faut au moins $totalADeduire Ar.");
+        }
+
+        $soldeModel->update($soldeConnecte['id'], [
+            'solde' => $soldeConnecte['solde'] - $totalADeduire
+        ]);
+
+        $soldeModel->update($soldeRecepteur['id'], [
+            'solde' => $soldeRecepteur['solde'] + $montant
+        ]);
+
+        $this->mouvementModel->save([
+            'idTypeOperation' => $fraisRow['idTypeOperation'],
+            'montant' => $montant,
+            'idEnvoyeur' => $idClientNumeroConnecte,
+            'idRecepteur' => $idClientNumeroRecepteur
+        ]);
+
+        return redirect()->to('/client-numero/solde')->with('success', 'Transfert effectué avec succès !');
+    }
+
         
 
 }
