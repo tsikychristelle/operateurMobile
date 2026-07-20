@@ -25,4 +25,8 @@ class clientNumeroSoldeController extends BaseController {
 
         return view('clientNumeroSolde/index', $data);
     }
+    public function getSoldeByClientNumero($idClientNumero){
+        $solde = $this->clientNumeroSoldeModel->where('idClientNumero', $idClientNumero)->first();
+        return $solde;
+    }
 }

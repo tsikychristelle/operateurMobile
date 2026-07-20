@@ -4,5 +4,7 @@ use CodeIgniter\Model;
 class MouvementModel extends Model{
     protected $table = 'mouvement';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['idClientNumero', 'idTypeOperation', 'montant', 'idEnvoyeur', 'idRecepteur'];
+
+    protected $allowedFields = [ 'date','idTypeOperation', 'montant', 'idEnvoyeur', 'idRecepteur'];
+
 }
