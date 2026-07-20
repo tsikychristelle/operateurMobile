@@ -17,30 +17,30 @@
         
     * fonction
         + Modele
-            - operateur
-            - operateurPrefix
-            - status
-            - typeOperation
-            - intervalMontant
-            - fraisTypeOperation
-            - client
-            - clientNumero
-            - clientNumeroOperateur
-            - clientNumeroSolde
-            - mouvement   
+            - operateurModel
+            - operateurPrefixModel
+            - statusModel
+            - typeOperationModel
+            - intervalMontantModel
+            - fraisTypeOperationModel
+            - clientModel
+            - clientNumeroModel
+            - clientNumeroOperateurModel
+            - clientNumeroSoldeModel
+            - mouvementModel   
         
         + controller
-            - operateur
-            - operateurPrefix
-            - status
-            - typeOperation
-            - intervalMontant
-            - fraisTypeOperation
-            - client
-            - clientNumero
-            - clientNumeroOperateur
-            - clientNumeroSolde
-            - mouvement   
+            - operateurController
+            - operateurPrefixController
+            - statusController
+            - typeOperationController
+            - intervalMontantController
+            - fraisTypeOperationController
+            - clientController
+            - clientNumeroController
+            - clientNumeroOperateurController
+            - clientNumeroSoldeController
+            - mouvementController   
         
         + Vue
         view
