@@ -17,6 +17,10 @@ class clientNumeroController extends  BaseController{
   
     public function index(){
         // $data['mouvements'] = $this->mouvementModel->findAll();
+        $data['pageTitle'] = 'Solde du client';
+        $data['pageSubtitle'] = 'Consultation du compte';
+        $data['activeNav'] = 'client-solde';
+        $data['viewMode'] = 'client';
         return view('clientNumero/index');
     }
     // public function save(){
@@ -59,7 +63,12 @@ class clientNumeroController extends  BaseController{
             $session->set('idClient',$nomClient['id']);
             if($clientNumero && $clientNumero['idClient'] == $nomClient['id']){
                 // Successful login
-                return view("clientNumero/accueil");
+                return view("clientNumero/accueil", [
+    'pageTitle' => 'Accueil client',
+    'pageSubtitle' => 'Bienvenue dans votre espace',
+    'activeNav' => '',
+    'viewMode' => 'client',
+]);
             } else {
                 // Handle failed login
                 return redirect()->to('/login');
@@ -69,9 +78,14 @@ class clientNumeroController extends  BaseController{
             return redirect()->to('/login');
         }
     }
-    public function accueil(){
-        return view("clientNumero/accueil");
-    }
+   public function accueil(){
+    return view("clientNumero/accueil", [
+        'pageTitle' => 'Accueil client',
+        'pageSubtitle' => 'Bienvenue dans votre espace',
+        'activeNav' => '',
+        'viewMode' => 'client',
+    ]);
+}
 
    
     

@@ -24,30 +24,38 @@
         </div>
 
         <?php if ($isClientView): ?>
-            <div class="nav-section-label">Navigation client</div>
+            <div class="nav-section-label">Côté utilisateur</div>
             <ul class="nav-list">
-                <li>
-                    <a href="/client-numero/accueil" class="nav-link <?= ($activeNav ?? '') === 'client-home' ? 'active' : '' ?>">
-                        <span class="ic">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-                        </span>
-                        Accueil
-                    </a>
-                </li>
                 <li>
                     <a href="/client-numero/solde" class="nav-link <?= ($activeNav ?? '') === 'client-solde' ? 'active' : '' ?>">
                         <span class="ic">
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         </span>
-                        Solde
+                        Voir le solde
                     </a>
                 </li>
                 <li>
-                    <a href="/client-numero" class="nav-link <?= ($activeNav ?? '') === 'client-login' ? 'active' : '' ?>">
+                    <a href="/mouvement/depot" class="nav-link <?= ($activeNav ?? '') === 'client-depot' ? 'active' : '' ?>">
                         <span class="ic">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
                         </span>
-                        Connexion
+                        Faire un dépôt
+                    </a>
+                </li>
+                <li>
+                    <a href="/mouvement/retrait" class="nav-link <?= ($activeNav ?? '') === 'client-retrait' ? 'active' : '' ?>">
+                        <span class="ic">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
+                        </span>
+                        Faire un retrait
+                    </a>
+                </li>
+                <li>
+                    <a href="/mouvement/transfert" class="nav-link <?= ($activeNav ?? '') === 'client-transfert' ? 'active' : '' ?>">
+                        <span class="ic">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                        </span>
+                        Faire un transfert
                     </a>
                 </li>
             </ul>

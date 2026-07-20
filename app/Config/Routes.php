@@ -47,4 +47,6 @@ $routes->get('/client-numero/accueil','clientNumeroController::accueil');
 
 // Clients solde 
 $routes->get('/client-numero/solde','clientNumeroSoldeController::index');
+$routes->get('/mouvement/depot', 'mouvementController::depot');
+$routes->post('/mouvement/depot', 'mouvementController::saveDepot');
 
