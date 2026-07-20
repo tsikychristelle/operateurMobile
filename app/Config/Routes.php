@@ -47,6 +47,8 @@ $routes->get('/client-numero/accueil','clientNumeroController::accueil');
 // clients mouvement 
 $routes->get('/mouvement/retrait', 'mouvementController::retrait');
 $routes->post('/mouvement/retrait', 'mouvementController::retrait1');
+$routes->get('/mouvement/transfert', 'mouvementController::transfert');
+$routes->post('/mouvement/transfert', 'mouvementController::transfert1');
 
 // Clients solde 
 $routes->get('/client-numero/solde','clientNumeroSoldeController::index');
