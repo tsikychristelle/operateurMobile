@@ -46,15 +46,20 @@ class clientNumeroController extends  BaseController{
         return $client;
     }
     public function login(){
+        $session = session();
         $numero = $this->request->getPost('numero');
         $nom = $this->request->getPost('nom');
+        
         $clientController = new clientController();
         $nomClient = $clientController->getClientByNom($nom);
+       
         if($nomClient){
            $clientNumero = $this->getClientByNumero($numero);
+            $session->set('idClientNumero', $clientNumero['id']);
+            $session->set('idClient',$nomClient['id']);
             if($clientNumero && $clientNumero['idClient'] == $nomClient['id']){
                 // Successful login
-                return "Bienvenue, " . $nomClient['nom'] . "!";
+                return view("clientNumero/accueil");
             } else {
                 // Handle failed login
                 return redirect()->to('/login');
@@ -64,5 +69,10 @@ class clientNumeroController extends  BaseController{
             return redirect()->to('/login');
         }
     }
+    public function accueil(){
+        return view("clientNumero/accueil");
+    }
+
+   
     
 }

@@ -401,3 +401,203 @@ in APPPATH/Controllers/clientNumeroController.php on line 51.
  4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-07-20 10:18:17 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: client-numero]
+in APPPATH/Controllers/clientNumeroController.php on line 74.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 5 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 6 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 7 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:23:39 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "ClientNumero/accueil.php"
+[Method: POST, Route: client-numero/login]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/clientNumeroController.php(62): view()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroController->login()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:24:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:24:37 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "ClientNumero/accueil.php"
+[Method: POST, Route: client-numero/login]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/clientNumeroController.php(62): view()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroController->login()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:25:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:25:02 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "ClientNumero/accueil.php"
+[Method: POST, Route: client-numero/login]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/clientNumeroController.php(62): view()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroController->login()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 10:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:26:09 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ClientNumeroSoldeModel::findByIDClientNumero
+[Method: GET, Route: client-numero/solde]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/clientNumeroSoldeController.php(14): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:28:41 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "clientNumeroSolde/index.php"
+[Method: GET, Route: client-numero/solde]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/clientNumeroSoldeController.php(17): view()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:30:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:30:49 --> ErrorException: Undefined variable $solde
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(17): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:31:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:31:10 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(17): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:38:27 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(17): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:43:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:43:41 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:44:21 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:45:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:45:04 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:45:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:45:10 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-20 10:45:31 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: client-numero/solde]
+in APPPATH/Views/clientNumeroSolde/index.php on line 10.
+ 1 APPPATH/Views/clientNumeroSolde/index.php(10): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/tsiky/Documents/S4/SystemeInformation/Examen/operateurMobile/app/Views/clientNumeroSolde/index.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/clientNumeroSoldeController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\clientNumeroSoldeController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-20 10:54:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-20 10:54:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

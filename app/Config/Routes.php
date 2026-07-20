@@ -27,3 +27,9 @@ $routes->post('/frais-type-operation/save', 'fraisTypeOperationController::save'
 // Clients 
 $routes->get('/client-numero', 'clientNumeroController::index');
 $routes->post('/client-numero/login', 'clientNumeroController::login');
+$routes->get('/client-numero/accueil','clientNumeroController::accueil');
+
+
+
+// Clients solde 
+$routes->get('/client-numero/solde','clientNumeroSoldeController::index');
