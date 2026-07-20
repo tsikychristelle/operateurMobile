@@ -116,3 +116,11 @@ INSERT INTO clientNumero (idClient, numero) VALUES
 (3, '0334455566'), -- Numéro Airtel pour Andry (id = 3)
 (4, '0345566677'), -- Numéro Telma pour Mialy (id = 4)
 (5, '0337788899'); -- Numéro Airtel pour Kanto (id = 5)
+
+INSERT INTO clientNumeroSolde (idClientNumero, solde) VALUES 
+(1, 50000.0),   -- Solde pour le numéro Telma de Rakoto (idClientNumero = 1)
+(2, 1500.50),   -- Solde pour le numéro Airtel de Rakoto (idClientNumero = 2)
+(3, 120000.0),  -- Solde pour le numéro Telma de Rasoa (idClientNumero = 3)
+(4, 0.0),       -- Solde pour le numéro Airtel de Andry (idClientNumero = 4, compte vide)
+(5, 85000.0),   -- Solde pour le numéro Telma de Mialy (idClientNumero = 5)
+(6, 350000.0);  -- Solde pour le numéro Airtel de Kanto (idClientNumero = 6)

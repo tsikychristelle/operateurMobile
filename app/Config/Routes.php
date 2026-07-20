@@ -30,6 +30,18 @@ $routes->get('/interval-montant', 'IntervalMontantController::index');
 $routes->post('/interval-montant/save', 'IntervalMontantController::save');
 $routes->get('/interval-montant/delete/(:num)', 'IntervalMontantController::delete/$1');
 
+
 $routes->get('/status', 'StatusController::index');
 $routes->post('/status/save', 'StatusController::save');
 $routes->get('/status/delete/(:num)', 'StatusController::delete/$1');
+
+// Clients 
+$routes->get('/client-numero', 'clientNumeroController::index');
+$routes->post('/client-numero/login', 'clientNumeroController::login');
+$routes->get('/client-numero/accueil','clientNumeroController::accueil');
+
+
+
+// Clients solde 
+$routes->get('/client-numero/solde','clientNumeroSoldeController::index');
+
