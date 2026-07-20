@@ -26,4 +26,15 @@ class TypeOperationController extends BaseController
         $model->delete($id);
         return redirect()->to('/type-operation');
     }
+    public function edit($id)
+    {
+        $model = new TypeOperationModel();
+        $data['type'] = $model->find($id);
+        return view('type_operation/edit', $data);
+    }
+    public function getAll(){
+        $model = new TypeOperationModel();
+        $data['types'] = $model->findAll();
+       return $data;
+    }
 }
