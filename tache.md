@@ -22,12 +22,12 @@
             - statusModel
             - typeOperationModel
             - intervalMontantModel
-            - fraisTypeOperationModel
-            - clientModel
-            - clientNumeroModel
-            - clientNumeroOperateurModel
-            - clientNumeroSoldeModel
-            - mouvementModel   
+            - fraisTypeOperationModel(Christelle)(ok)
+            - clientModel(Christelle)(ok)
+            - clientNumeroModel(Christelle)(ok)
+            - clientNumeroOperateurModel(Christelle)
+            - clientNumeroSoldeModel(Christelle)
+            - mouvementModel(Christelle)
         
         + controller
             - operateurController
@@ -35,12 +35,12 @@
             - statusController
             - typeOperationController
             - intervalMontantController
-            - fraisTypeOperationController
-            - clientController
-            - clientNumeroController
-            - clientNumeroOperateurController
-            - clientNumeroSoldeController
-            - mouvementController   
+            - fraisTypeOperationController(Christelle)
+            - clientController(Christelle)
+            - clientNumeroController(Christelle)
+            - clientNumeroOperateurController(Christelle)
+            - clientNumeroSoldeController(Christelle)
+            - mouvementController(Christelle)
         
         + Vue
         view
