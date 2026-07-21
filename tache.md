@@ -59,3 +59,11 @@ Model
 
 controller
     promotionController(ok)
+
+# Allea 2
+Epargne 
+-Creation de la tablle epargne 
+-Creation de la page epargne 
+-C'est l'utlisateur qui choist sn epargne 
+-Quand c'est un transfert quand l'user fat un transert et qu'il a un epargne donc le frais est en foncton du poourcentage de l'epargne 
+

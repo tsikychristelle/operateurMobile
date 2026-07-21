@@ -212,3 +212,52 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 15 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 DEBUG - 2026-07-21 06:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2026-07-21 06:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-21 08:09:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-21 08:09:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-21 08:09:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-07-21 08:09:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-21 08:09:48 --> CodeIgniter\Database\Exceptions\DataException: Allowed fields must be specified for model: "App\Models\EpargneModel"
+[Method: POST, Route: epargne/save]
+in SYSTEMPATH/Model.php on line 678.
+ 1 SYSTEMPATH/Model.php(678): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields()
+ 2 SYSTEMPATH/BaseModel.php(880): CodeIgniter\Model->doProtectFieldsForInsert()
+ 3 SYSTEMPATH/Model.php(668): CodeIgniter\BaseModel->insert()
+ 4 SYSTEMPATH/BaseModel.php(752): CodeIgniter\Model->insert()
+ 5 APPPATH/Controllers/EpargneController.php(16): CodeIgniter\BaseModel->save()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EpargneController->save()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-21 08:16:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-21 08:16:16 --> CodeIgniter\Database\Exceptions\DataException: Allowed fields must be specified for model: "App\Models\EpargneModel"
+[Method: POST, Route: epargne/save]
+in SYSTEMPATH/Model.php on line 678.
+ 1 SYSTEMPATH/Model.php(678): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields()
+ 2 SYSTEMPATH/BaseModel.php(880): CodeIgniter\Model->doProtectFieldsForInsert()
+ 3 SYSTEMPATH/Model.php(668): CodeIgniter\BaseModel->insert()
+ 4 SYSTEMPATH/BaseModel.php(752): CodeIgniter\Model->insert()
+ 5 APPPATH/Controllers/EpargneController.php(16): CodeIgniter\BaseModel->save()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EpargneController->save()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-21 08:17:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-07-21 08:17:38 --> CodeIgniter\Database\Exceptions\DataException: Allowed fields must be specified for model: "App\Models\EpargneModel"
+[Method: POST, Route: epargne/save]
+in SYSTEMPATH/Model.php on line 678.
+ 1 SYSTEMPATH/Model.php(678): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields()
+ 2 SYSTEMPATH/BaseModel.php(880): CodeIgniter\Model->doProtectFieldsForInsert()
+ 3 SYSTEMPATH/Model.php(668): CodeIgniter\BaseModel->insert()
+ 4 SYSTEMPATH/BaseModel.php(752): CodeIgniter\Model->insert()
+ 5 APPPATH/Controllers/EpargneController.php(16): CodeIgniter\BaseModel->save()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EpargneController->save()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+DEBUG - 2026-07-21 08:26:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

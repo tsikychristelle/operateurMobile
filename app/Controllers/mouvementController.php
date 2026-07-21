@@ -9,6 +9,7 @@ use App\Controllers\clientNumeroController;
 use App\Controllers\clientNumeroOperateurController;
 use App\Models\ClientNumeroOperateurModel;
 use App\Controllers\OperateurController;
+use App\Controllers\EpargneController;
 class mouvementController extends  BaseController{
     protected $mouvementModel;
     protected $clientNumeroSoldeModel;
@@ -222,10 +223,12 @@ class mouvementController extends  BaseController{
         $idClientNumeroConnecte = $session->get('idClientNumero');
         $clientNumeroOperateurController = new clientNumeroOperateurController();
         
+        $epargneController = new EpargneController();
+        $epargneModel = new App\Models\EpargneModel();
+        $epargne = $epargneModel->where('idClientNumero',$idClientNumeroConnecte);
+        // $promotion = new \App\Models\PromotionModel();
+        // $promo = $promotion->getAll();
 
-        $promotion = new \App\Models\PromotionModel();
-        $promo = $promotion->getAll();
-        
 
 
 
@@ -261,8 +264,16 @@ class mouvementController extends  BaseController{
         if (!$fraisRow) {
             return redirect()->back()->with('error', 'Aucun frais de transfert n’est configuré pour ce montant.');
         }
+        $epargneUnitaire = 0;
+        if($epargne){
+            $fraisUnitaire = floatval($fraisRow['frais']+$epargne['valeur']);
+        }
+        else {
+            $fraisUnitaire = floatval($fraisRow['frais']);
 
-        $fraisUnitaire = floatval($fraisRow['frais']);
+        }
+
+
         $fraisTotal = $fraisUnitaire * $nbRecepteurs;
         $totalADeduire = $montantTotal + $fraisTotal;
 

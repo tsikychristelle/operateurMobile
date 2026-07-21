@@ -22,6 +22,7 @@ $viewMode = 'client';
             <a href="/mouvement/depot" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un dépôt</a>
             <a href="/mouvement/retrait" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un retrait</a>
             <a href="/mouvement/transfert" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire un transfert</a>
+            <a href="/epargne" class="btn btn-ghost" style="flex: 1; min-width: 180px; justify-content: center;">Faire une epargne </a>
         </div>
     </div>
 </div>

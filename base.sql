@@ -98,6 +98,13 @@ CREATE TABLE promoton (
     valeur DECIMAL(2,5)
 )
 
+
+CREATE TABLE epargne(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idClientNumero INTEGER NOT NULL,
+    valeur DECIMAL(2,5),
+    FOREIGN KEY (idClientNumero) REFERENCES clientNumero(id)
+);
 -- 3. Le Trigger Corrigé
 CREATE TRIGGER after_client_numero_insert
 AFTER INSERT ON clientNumero
