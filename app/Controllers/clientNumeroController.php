@@ -86,13 +86,13 @@ class clientNumeroController extends  BaseController{
             $session->set('idClient',$nomClient['id']);
             if($clientNumero && $clientNumero['idClient'] == $nomClient['id']){
                 // Successful login
-                return view("clientNumero/accueil", [
-    'pageTitle' => 'Accueil client',
-    'pageSubtitle' => 'Bienvenue dans votre espace',
-    'activeNav' => '',
-    'viewMode' => 'client',
-    'mouvements' => $this->getMouvementsClient(),
-]);
+                            return view("clientNumero/accueil", [
+                'pageTitle' => 'Accueil client',
+                'pageSubtitle' => 'Bienvenue dans votre espace',
+                'activeNav' => '',
+                'viewMode' => 'client',
+                'mouvements' => $this->getMouvementsClient(),
+            ]);
             } else {
                 // Handle failed login
                 return redirect()->to('/login');
