@@ -108,6 +108,7 @@ class mouvementController extends  BaseController{
     {   
         $session = session();
         $idClientNumeroConnecte = $session->get('idClientNumero'); 
+
         
         // 1. On récupère le NUMÉRO écrit dans l'input (et non un ID)
         $numeroRecepteurSaisi = $this->request->getPost('recepteur');   
@@ -215,10 +216,19 @@ class mouvementController extends  BaseController{
 
    public function transfert1()
     {
+
+
         $session = session();
         $idClientNumeroConnecte = $session->get('idClientNumero');
         $clientNumeroOperateurController = new clientNumeroOperateurController();
         
+
+        $promotion = new \App\Models\PromotionModel();
+        $promo = $promotion->getAll();
+        
+
+
+
         // Récupération de la chaîne de numéros et découpage en tableau
         $recepteursInput = $this->request->getPost('recepteurs');
         $numeros = array_filter(array_map('trim', explode(',', $recepteursInput)));

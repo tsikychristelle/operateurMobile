@@ -50,3 +50,12 @@
             => fonction qui relie un numero avec un operateur (Gaelle)(ok)
             => fonction qui cherche un client en fonction de son numero
             => fonction qui creer un mouvement ( quand on creer un mouvement le solde de l'envoyeur et du recepteur change)
+
+creation de table
+    promotion (id, valeur)(ok)
+
+Model
+    promotiionModel (ok)
+
+controller
+    promotionController(ok)

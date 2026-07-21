@@ -93,6 +93,11 @@ CREATE TABLE mouvement (
     FOREIGN KEY (idRecepteur) REFERENCES clientNumero(id)
 );
 
+CREATE TABLE promoton (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    valeur DECIMAL(2,5)
+)
+
 -- 3. Le Trigger Corrigé
 CREATE TRIGGER after_client_numero_insert
 AFTER INSERT ON clientNumero
