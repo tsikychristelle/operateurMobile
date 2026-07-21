@@ -183,12 +183,12 @@ class mouvementController extends  BaseController{
 
         // 5. MISE À JOUR DES SOLDES
         $soldeModel->update($soldeCible['id'], [
-            'solde' => $soldeCible['solde'] - $totalADeduire
+            'solde' => $soldeCible['solde'] + $totalADeduire
         ]);
 
         if ($soldeConnecte) {
             $soldeModel->update($soldeConnecte['id'], [
-                'solde' => $soldeConnecte['solde'] + $montant
+                'solde' => $soldeConnecte['solde'] - $montant
             ]);
         } else {
             $soldeModel->save([
