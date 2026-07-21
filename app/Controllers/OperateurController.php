@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\OperateurModel;
+use App\Models\OperateurPrefixModel;
 
 class OperateurController extends BaseController
 {
@@ -31,5 +32,16 @@ class OperateurController extends BaseController
         $model = new OperateurModel();
         $model->delete($id);
         return redirect()->to('/operateur')->with('success', 'Opérateur supprimé.');
+    }
+    
+    public function getOperateurByNumero(string $numero)
+    {
+        $model = new OperateurPrefixModel();
+        $prefix = substr($numero, 0, 3);
+
+        return $model
+            ->join('operateur', 'operateur.id = operateurPrefix.idOperateur')
+            ->where('prefix', $prefix)
+            ->first();
     }
 }

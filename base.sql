@@ -1,8 +1,21 @@
--- Active: 1784538205105@@127.0.0.1@3306
--- Activer le support des clés étrangères (obligatoire sous SQLite)
+-- Activer le support des clés étrangères
 PRAGMA foreign_keys = ON;
 
--- 1. Tables principales (sans dépendances)
+-- Clean-up (si nécessaire)
+DROP TRIGGER IF EXISTS after_client_numero_insert;
+DROP TABLE IF EXISTS mouvement;
+DROP TABLE IF EXISTS clientNumeroSolde;
+DROP TABLE IF EXISTS clientNumeroOperateur;
+DROP TABLE IF EXISTS clientNumero;
+DROP TABLE IF EXISTS fraisTypeOperation;
+DROP TABLE IF EXISTS operateurPrefix;
+DROP TABLE IF EXISTS client;
+DROP TABLE IF EXISTS intervalMontant;
+DROP TABLE IF EXISTS typeOperation;
+DROP TABLE IF EXISTS status;
+DROP TABLE IF EXISTS operateur;
+
+-- 1. Tables principales
 CREATE TABLE operateur (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     libelle TEXT NOT NULL
@@ -10,7 +23,7 @@ CREATE TABLE operateur (
 
 CREATE TABLE status (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    libelle TEXT NOT NULL -- ex: 'avec frais' ou 'sans frais'
+    libelle TEXT NOT NULL
 );
 
 CREATE TABLE typeOperation (
@@ -29,7 +42,7 @@ CREATE TABLE client (
     nom TEXT NOT NULL
 );
 
--- 2. Tables avec dépendances (Clés étrangères)
+-- 2. Tables avec dépendances
 CREATE TABLE operateurPrefix (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     idOperateur INTEGER NOT NULL,
@@ -73,33 +86,51 @@ CREATE TABLE mouvement (
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
     idTypeOperation INTEGER NOT NULL,
     montant REAL NOT NULL,
-    idEnvoyeur INTEGER,  -- Réfère probablement à l'ID d'un autre client ou clientNumero
-    idRecepteur INTEGER, -- Réfère probablement à l'ID d'un autre client ou clientNumero
+    idEnvoyeur INTEGER,
+    idRecepteur INTEGER,
     FOREIGN KEY (idTypeOperation) REFERENCES typeOperation(id),
     FOREIGN KEY (idEnvoyeur) REFERENCES clientNumero(id),
     FOREIGN KEY (idRecepteur) REFERENCES clientNumero(id)
 );
 
+-- 3. Le Trigger Corrigé
+CREATE TRIGGER after_client_numero_insert
+AFTER INSERT ON clientNumero
+FOR EACH ROW
+BEGIN
+    INSERT INTO clientNumeroOperateur (idClientNumero, idOperateur)
+    SELECT 
+        NEW.id,
+        idOperateur
+    FROM operateurPrefix
+    WHERE prefix = SUBSTR(TRIM(NEW.numero), 1, 3)
+    LIMIT 1;
+END;
 
+-- -------------------------------------------------------------
+-- INSERTIONS DES DONNÉES
+-- -------------------------------------------------------------
+
+-- Opérateurs (Génère IDs : 1 = Orange, 2 = Airtel, 3 = Yas)
 INSERT INTO operateur (libelle) VALUES 
 ('Orange'),
-('MTN'),
-('Moov'),
-('Autres');
+('Airtel'),
+('Yas');
 
--- Exemple pour Orange (supposons que son id = 1)
+-- Préfixes avec les BONS IDs de la table operateur (1, 2, 3)
 INSERT INTO operateurPrefix (idOperateur, prefix) VALUES 
-(1, '033'),
+(1, '032'),
 (1, '037'),
-(1, '055'),  -- selon les préfixes réels de votre pays
-(2, '077'),  -- MTN par exemple
-(2, '078');
-INSERT INTO "typeOperation" (type) VALUES 
+(2, '033'),
+(3, '034'),
+(3, '038');
+
+INSERT INTO typeOperation (type) VALUES 
 ('Depot'),
 ('Retrait'),
 ('Transfert');
 
--- 1. Insertion des clients
+-- Clients (Génère IDs : 1 à 5)
 INSERT INTO client (nom) VALUES 
 ('Rakoto'),
 ('Rasoa'),
@@ -107,60 +138,37 @@ INSERT INTO client (nom) VALUES
 ('Mialy'),
 ('Kanto');
 
--- 2. Insertion des numéros associés (034 pour Telma, 033 pour Airtel)
--- L'idClient correspond à l'ID généré automatiquement dans la table client
+-- Numéros (Rattachés aux VRAIS idClient : 1 à 5)
+-- Le TRIGGER va automatiquement remplir clientNumeroOperateur ici !
 INSERT INTO clientNumero (idClient, numero) VALUES 
-(1, '0341234567'), -- Numéro Telma pour Rakoto (id = 1)
-(1, '0331122233'), -- Deuxième numéro (Airtel) pour Rakoto
-(2, '0349876543'), -- Numéro Telma pour Rasoa (id = 2)
-(3, '0334455566'), -- Numéro Airtel pour Andry (id = 3)
-(4, '0345566677'), -- Numéro Telma pour Mialy (id = 4)
-(5, '0337788899'); -- Numéro Airtel pour Kanto (id = 5)
+(1, '0341234567'), -- Telma/Yas (id 1)
+(1, '0331122233'), -- Airtel (id 2)
+(2, '0349876543'), -- Telma/Yas (id 3)
+(3, '0334455566'), -- Airtel (id 4)
+(4, '0345566778'), -- Telma/Yas (id 5)
+(5, '0337788899'); -- Airtel (id 6)
 
+-- Soldes rattachés aux VRAIS idClientNumero (1 à 6)
 INSERT INTO clientNumeroSolde (idClientNumero, solde) VALUES 
-(1, 50000.0),   -- Solde pour le numéro Telma de Rakoto (idClientNumero = 1)
-(2, 1500.50),   -- Solde pour le numéro Airtel de Rakoto (idClientNumero = 2)
-(3, 120000.0),  -- Solde pour le numéro Telma de Rasoa (idClientNumero = 3)
-(4, 0.0),       -- Solde pour le numéro Airtel de Andry (idClientNumero = 4, compte vide)
-(5, 85000.0),   -- Solde pour le numéro Telma de Mialy (idClientNumero = 5)
-(6, 350000.0);  -- Solde pour le numéro Airtel de Kanto (idClientNumero = 6)
+(1, 50000.0),
+(2, 1500.50),
+(3, 120000.0),
+(4, 0.0),
+(5, 85000.0),
+(6, 350000.0);
 
--- 1. Insertion des tranches de montants (intervalMontant)
--- Les IDs (1, 2, 3, 4) vont être générés automatiquement dans cet ordre
+-- Intervals & Frais
 INSERT INTO intervalMontant (debut, fin) VALUES 
-(100.0, 5000.0),     -- Tranche 1 : de 100 à 5 000 Ar
-(5001.0, 20000.0),   -- Tranche 2 : de 5 001 à 20 000 Ar
-(20001.0, 100000.0), -- Tranche 3 : de 20 001 à 100 000 Ar
-(100001.0, 500000.0);-- Tranche 4 : de 100 001 à 500 000 Ar
+(100.0, 5000.0),     -- ID 1
+(5001.0, 20000.0),   -- ID 2
+(20001.0, 100000.0), -- ID 3
+(100001.0, 500000.0);-- ID 4
 
--- 2. Insertion des frais associés (fraisTypeOperation)
--- On lie chaque type d'opération à un intervalle avec un montant de frais fixe
 INSERT INTO fraisTypeOperation (idTypeOperation, idIntervalMontant, frais) VALUES 
--- Tarifs pour le Type d'opération 2 (Ex: Retrait)
-(2, 1, 150.0),   -- Tranche 1 : 150 Ar de frais
-(2, 2, 400.0),   -- Tranche 2 : 400 Ar de frais
-(2, 3, 1200.0),  -- Tranche 3 : 1 200 Ar de frais
-(2, 4, 3500.0),  -- Tranche 4 : 3 500 Ar de frais
-(3, 2, 300.0),   -- Tranche 2 : 300 Ar de frais
-(3, 3, 900.0),   -- Tranche 3 : 900 Ar de frais
-(3, 4, 2800.0);  -- Tranche 4 : 2 800 Ar de frais
-
-INSERT INTO clientNumeroOperateur (idClientNumero, idOperateur) VALUES 
-(1, 4), -- 0341234567 -> Autres (opérateur non défini dans les préfixes)
-(2, 1), -- 0331122233 -> Orange (préfixe 033)
-(3, 4), -- 0349876543 -> Autres
-(4, 1), -- 0334455566 -> Orange (préfixe 033)
-(5, 4), -- 0345566677 -> Autres
-(6, 1); -- 0337788899 -> Orange (préfixe 033)
-CREATE TRIGGER after_client_numero_insert
-AFTER INSERT ON clientNumero
-BEGIN
-    INSERT INTO clientNumeroOperateur (idClientNumero, idOperateur)
-    VALUES (
-        NEW.id,
-        COALESCE(
-            (SELECT idOperateur FROM operateurPrefix WHERE prefix = SUBSTR(NEW.numero, 1, 3) LIMIT 1),
-            4 -- ID de l'opérateur 'Autres' par défaut
-        )
-    );
-END;
+(2, 1, 150.0),
+(2, 2, 400.0),
+(2, 3, 1200.0),
+(2, 4, 3500.0),
+(3, 2, 300.0),
+(3, 3, 900.0),
+(3, 4, 2800.0);

@@ -6,6 +6,9 @@ use App\Controllers\clientController;
 use App\Models\ClientModel;
 use App\Models\ClientNumeroModel;
 use App\Controllers\clientNumeroController;
+use App\Controllers\clientNumeroOperateurController;
+use App\Models\ClientNumeroOperateurModel;
+use App\Controllers\OperateurController;
 class mouvementController extends  BaseController{
     protected $mouvementModel;
     protected $clientNumeroSoldeModel;
@@ -102,7 +105,7 @@ class mouvementController extends  BaseController{
     }
    
     public function retrait1()
-    {
+    {   
         $session = session();
         $idClientNumeroConnecte = $session->get('idClientNumero'); 
         
@@ -210,97 +213,92 @@ class mouvementController extends  BaseController{
         return view('mouvement/transfert');
     }
 
-    public function transfert1()
+   public function transfert1()
     {
         $session = session();
         $idClientNumeroConnecte = $session->get('idClientNumero');
-        $numeroRecepteurSaisi = $this->request->getPost('recepteur');
-        $montant = floatval($this->request->getPost('montant'));
+        $clientNumeroOperateurController = new clientNumeroOperateurController();
+        
+        // Récupération de la chaîne de numéros et découpage en tableau
+        $recepteursInput = $this->request->getPost('recepteurs');
+        $numeros = array_filter(array_map('trim', explode(',', $recepteursInput)));
+        
+        $montantTotal = floatval($this->request->getPost('montant'));
         $avecFrais = $this->request->getPost('avecFrais') === '1';
 
-        if (!$idClientNumeroConnecte || !$numeroRecepteurSaisi || $montant <= 0) {
+        if (!$idClientNumeroConnecte || empty($numeros) || $montantTotal <= 0) {
             return redirect()->back()->with('error', 'Données de transaction invalides.');
         }
 
-        $clientNumeroModel = new \App\Models\ClientNumeroModel();
-        $compteRecepteur = $clientNumeroModel->where('numero', $numeroRecepteurSaisi)->first();
-
-        if (!$compteRecepteur) {
-            return redirect()->back()->with('error', "Le numéro destinataire '$numeroRecepteurSaisi' n'existe pas.");
+        // 1. VERIFICATION OPERATEUR COMMUN
+        // On appelle la fonction de vérification de l'opérateur
+        if (!$clientNumeroOperateurController->sameOperateurByMultipleNumbers($numeros)) {
+            return redirect()->back()->with('error', 'Les numéros saisis doivent tous appartenir au même opérateur.');
         }
 
-        $idClientNumeroRecepteur = $compteRecepteur['id'];
+        $nbRecepteurs = count($numeros);
+        $montantParRecepteur = $montantTotal / $nbRecepteurs; // Partage du montant
 
+        // 2. RECHERCHE DU FRAIS APPLICABLE (basé sur le montant individuel ou total selon vos règles)
         $fraisTypeOperationModel = new \App\Models\FraisTypeOperationModel();
         $fraisRow = $fraisTypeOperationModel
             ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
             ->where('fraisTypeOperation.idTypeOperation', 3)
-            ->where('intervalMontant.debut <=', $montant)
-            ->where('intervalMontant.fin >=', $montant)
+            ->where('intervalMontant.debut <=', $montantParRecepteur)
+            ->where('intervalMontant.fin >=', $montantParRecepteur)
             ->first();
 
         if (!$fraisRow) {
-            $fraisRow = $fraisTypeOperationModel
-                ->select('fraisTypeOperation.*')
-                ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
-                ->where('fraisTypeOperation.idTypeOperation', 3)
-                ->where('intervalMontant.fin <=', $montant)
-                ->orderBy('intervalMontant.fin', 'DESC')
-                ->first();
+            return redirect()->back()->with('error', 'Aucun frais de transfert n’est configuré pour ce montant.');
         }
 
-        if (!$fraisRow) {
-            $fraisRow = $fraisTypeOperationModel
-                ->select('fraisTypeOperation.*')
-                ->join('intervalMontant', 'intervalMontant.id = fraisTypeOperation.idIntervalMontant')
-                ->where('fraisTypeOperation.idTypeOperation', 3)
-                ->orderBy('intervalMontant.debut', 'ASC')
-                ->first();
-        }
+        $fraisUnitaire = floatval($fraisRow['frais']);
+        $fraisTotal = $fraisUnitaire * $nbRecepteurs;
+        $totalADeduire = $montantTotal + $fraisTotal;
 
-        if (!$fraisRow) {
-            return redirect()->back()->with('error', 'Aucun frais de transfert n’est configuré.');
-        }
-
-        $frais = floatval($fraisRow['frais']);
-        $totalADeduire = $montant + $frais;
-
+        // 3. VÉRIFICATION DU SOLDE DE L'ENVOYEUR
         $soldeModel = new \App\Models\ClientNumeroSoldeModel();
-
         $soldeConnecte = $soldeModel->where('idClientNumero', $idClientNumeroConnecte)->first();
-        $soldeRecepteur = $soldeModel->where('idClientNumero', $idClientNumeroRecepteur)->first();
 
-        if (!$soldeConnecte) {
-            return redirect()->back()->with('error', 'Le compte du client connecté ne possède pas de solde actif.');
+        if (!$soldeConnecte || $soldeConnecte['solde'] < $totalADeduire) {
+            return redirect()->back()->with('error', "Solde insuffisant. Il faut au moins $totalADeduire Ar (Montant + Frais).");
         }
 
-        if (!$soldeRecepteur) {
-            return redirect()->back()->with('error', 'Le compte du récepteur ne possède pas de solde actif.');
-        }
-
-        if ($soldeConnecte['solde'] < $totalADeduire) {
-            return redirect()->back()->with('error', "Solde insuffisant sur votre compte. Il faut au moins $totalADeduire Ar.");
-        }
-
+        // 4. DEBIT DU COMPTE EMETTEUR
         $soldeModel->update($soldeConnecte['id'], [
             'solde' => $soldeConnecte['solde'] - $totalADeduire
         ]);
 
-        $montantCredite = $avecFrais ? $montant + $frais : $montant;
+        // 5. CREDIT ET ENREGISTREMENT DU MOUVEMENT POUR CHAQUE RECEPTEUR
+        $clientNumeroModel = new \App\Models\ClientNumeroModel();
 
-        $soldeModel->update($soldeRecepteur['id'], [
-            'solde' => $soldeRecepteur['solde'] + $montantCredite
-        ]);
+        foreach ($numeros as $numero) {
+            $compteRecepteur = $clientNumeroModel->where('numero', $numero)->first();
 
-        $this->mouvementModel->save([
-            'idClientNumero' => $idClientNumeroConnecte,
-            'idTypeOperation' => $fraisRow['idTypeOperation'],
-            'montant' => $montant,
-            'idEnvoyeur' => $idClientNumeroConnecte,
-            'idRecepteur' => $idClientNumeroRecepteur
-        ]);
+            if ($compteRecepteur) {
+                $soldeRecepteur = $soldeModel->where('idClientNumero', $compteRecepteur['id'])->first();
 
-        return redirect()->to('/client-numero/solde')->with('success', 'Transfert effectué avec succès !');
+                if ($soldeRecepteur) {
+                    $montantCredite = $avecFrais ? $montantParRecepteur + $fraisUnitaire : $montantParRecepteur;
+
+                    // Crédit du destinataire
+                    $soldeModel->update($soldeRecepteur['id'], [
+                        'solde' => $soldeRecepteur['solde'] + $montantCredite
+                    ]);
+
+                    // Historisation de la transaction
+                    $this->mouvementModel->save([
+                        'idClientNumero'  => $idClientNumeroConnecte,
+                        'idTypeOperation' => $fraisRow['idTypeOperation'],
+                        'montant'         => $montantParRecepteur,
+                        'idEnvoyeur'      => $idClientNumeroConnecte,
+                        'idRecepteur'     => $compteRecepteur['id']
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->to('/client-numero/solde')->with('success', 'Transfert multiple effectué avec succès !');
     }
 
         
