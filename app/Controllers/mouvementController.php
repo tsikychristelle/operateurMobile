@@ -288,7 +288,6 @@ class mouvementController extends  BaseController{
 
                     // Historisation de la transaction
                     $this->mouvementModel->save([
-                        'idClientNumero'  => $idClientNumeroConnecte,
                         'idTypeOperation' => $fraisRow['idTypeOperation'],
                         'montant'         => $montantParRecepteur,
                         'idEnvoyeur'      => $idClientNumeroConnecte,
